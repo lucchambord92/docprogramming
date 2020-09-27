@@ -1,0 +1,111 @@
+My vim cheatsheet
+
+Insert mode:
+  -insert from cursor position: i
+  -insert AFTER cursor: a (append)
+  -insert text AFTER the end of the LINE: A
+  -insert mode with new line below cursor: o (as open new line)
+  -insert mode with new line above cursor: O
+
+Positionning in the text:
+  -CTRL+g: display your location in the file and the file status
+  -up, down, right, left: arrows key
+  -use "motions" key word (the same as the operator "delete")
+  -move to the begin of the line: 0
+  -move to bottom file: G
+  -move to top file: gg
+  -move to line n of file: nG
+  -move to previous position: CTRL-o
+  -unmove previous position: CTRL-i
+
+Text selection:
+  -enter visual mode (v, V, ctrl+v) and use cursor
+  
+  -searching:
+     -search forward: /phrase
+     -search backward: ?phrase
+     -repeat forward: n
+     -repeat backword: N
+
+  -setting search options:
+     -ignore case: type :set ic
+     -highlight search: type :set hls
+     -remove highlight search: nohlsearch
+     -'is' 'incsearch' option:  show partial matches for a search phrase
+     -Prepend "no" to switch an option off:   :set noic
+
+Correction: (must be in command mode (<ESC>)):
+  -delete a character: x
+  -delete a word: dw
+  -delete 5 words: d5w
+  -delete from cursor to end of line: d$
+  -delete line: dd
+  -in general: d number motion : delete number times according to motion
+  -the deleted text is stored in vim buffer and can be pasted (put command: p) anywhere at the cursor position.
+
+  -undo changes:
+    -undo a change: u
+    -undo all changes on a line: U
+
+  -replacement:
+    -Typing a capital  R  enters Replace mode until  <ESC>  is pressed.
+    -replace a character with x: rx
+    -replace the end of a word (from cursor): ce
+    -general change: c [number] motion
+    -replace with another string:
+      -to change one occurence: :s/old/new
+      -to change all occurences in a line: :s/old/new/g
+      -to change every occurence in the whole file: :%s/old/new/g
+      -to change every occurence in the whole file with prompt: :%s/old/new/gc
+      -to change every occurence between 2 lines: :l1,l2s/old/new/g 
+
+  -matching ), ], }: place cursor on one of these parentheses and type command %
+  -continuing command % for next match
+
+exit (must be in extended command mode (:)) :
+  -quit without saving: q!
+  -save and stay in vim: w
+  -save and quit: wq
+
+copy:
+  -highlight the text to be copied, for this use visual mode like this:
+    -highlight characters: v
+    -highlight lines: V
+    -highlight blocks: ctrl + v
+  -yank the highlighted texts to the buffer: y (yw yank one word)
+  -go to the position where you want to paste and type: p (paste)
+
+Getting help:
+                      ** Use the on-line help system **
+
+  Vim has a comprehensive on-line help system.  To get started, try one of
+  these three:
+        - press the <HELP> key (if you have one)
+        - press the <F1> key (if you have one)
+        - type   :help <ENTER>
+
+  Read the text in the help window to find out how the help works.
+  Type  CTRL-W CTRL-W   to jump from one window to another.
+  Type    :q <ENTER>    to close the help window.
+
+  You can find help on just about any subject, by giving an argument to the
+  ":help" command.  Try these (don't forget pressing <ENTER>):
+
+        :help w
+        :help c_CTRL-D
+        :help insert-index
+        :help user-manual
+
+
+Miscellanous:
+  -execute an external command: must be in the extended command mode (:): !
+  -extracting a part of the text and save it in another file: 
+    -select the text with v and cursor (see selection)
+    -then save it with :w filename
+  -retrieving and merging file:
+    -place the cursor at the merging position
+    -type :r FILENAME (:r means read)
+  -merging with an output of an external command: 
+    -place the cursor at the merging position
+    -type :r !EXTERNALCOMMAND  
+

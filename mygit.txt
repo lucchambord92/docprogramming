@@ -1,0 +1,50 @@
+Installing Git:
+	$ sudo apt install git
+
+Starting our Git repository
+	Git tracks changes to a particular set of files in what's called a code repository (or "repo" for short). Let's start one for our project. Open up your console and run these commands, in the project directory:
+
+	$ git init
+	Initialized empty Git repository in ~/project/.git/
+
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email you@example.com
+
+	Initializing the git repository is something we need to do only once per project
+
+	Git will track changes to all the files and folders in this directory, but there are some files we want it to ignore. We do this by creating a file called .gitignore in the base directory. Open up your editor and create a new file with the following contents:
+	.gitignore:
+	*.pyc
+	*~
+	/.vscode
+	__pycache__
+	projectve
+	db.sqlite3
+	/static
+	.DS_Store
+	
+	And save it as .gitignore in the "project" folder.
+
+	$ git status
+	On branch master
+
+	$ git add --all .
+	$ git commit -m "My project, first commit"
+
+Pushing your code to GitHub:
+
+Create a new repository on GitHub.com, giving it the name "my-first-blog". Leave the "initialize with a README" checkbox unchecked, leave the .gitignore option blank (we've done that manually) and leave the License as None.
+
+Now we need to hook up the Git repository on your computer to the one up on GitHub.
+
+Type the following into your console (replace <your-github-username> with the username you entered when you created your GitHub account, but without the angle-brackets -- the URL should match the clone URL you just saw):
+
+$ git remote add origin https://github.com/<your-github-username>/my-first-blog.git
+$ git push -u origin master
+
+Pulling any remote changes from a remote server to a local computer:
+
+$ git pull 
+
+
+

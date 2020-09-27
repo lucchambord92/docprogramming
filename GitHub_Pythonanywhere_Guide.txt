@@ -1,0 +1,63 @@
+Github and pythonanywhere guide
+
+Installation of a virtual environment:
+    -create a directory for the virtual environment: 
+        $ mkdir dja22
+        $ cd dja22
+    -create the virtual environment: 
+        python3 -m venv dja22ve
+    -activate the virtual environment:
+        $ source dja22ve/bin/activate
+
+Installing the projects softwares for this virtual environment (here django 2.2):
+    -(dja22ve) ~$ python -m pip install --upgrade pip
+    -create a requirement file:
+        -create a requirement file in the folder dja22
+        -add the software requirements in this file:
+            (here) Django~=2.2.4
+        -run pip install -r requirements.txt to install the needed softwares:
+            (dja22ve) ~$ pip install -r requirements.txt
+
+
+
+Deploying on Pythonanywhere for the first time:
+    create an API token:
+        -click on account (top left)
+        -click on APIToken (top bar)
+        -click on create a new APItoken
+    Configuring our site on PythonAnywhere:
+        -start a "Bash" console
+        -configure pythonanywhere with a helper tool:
+            -pip3.6 install --user pythonanywhere
+            -run the helper to automatically configure our app from GitHub:
+                -pa_autoconfigure_django.py --python=3.6 
+                 https://github.com/<your-github-username>/my-first-blog.git
+        -create a superuser for our website
+            -python manage.py createsuperuser
+        
+
+
+
+Pushing changes on Github:
+
+    -git status 
+    -git add --all .
+    -git status (files to be changed are in green)
+    -git commit -m "changes title"
+    -git push
+
+Deploying on Pythonanywhere after changes:
+
+    -cd <your-pythonanywhere-domain>.pythonanywhere.com
+    -git pull
+
+    -if some static files has been modified:
+        -workon <your-pythonanywhere-domain>.pythonanywhere.com (activate the virtual env)
+        -(ola.pythonanywhere.com)$ python manage.py collectstatic
+
+    -Finally, hop on over to the "Web" page and hit Reload on your web app.
+
+
+
+
+

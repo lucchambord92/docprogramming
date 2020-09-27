@@ -1,0 +1,6 @@
+My Windows Manual
+
+Systems:
+	-setting executables' path:
+		Set PATH=%PATH%;D:\Luc\MyApp;
+    -access BIOS while booting: maintain Esc key on ASUS vivobook S

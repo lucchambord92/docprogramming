@@ -1,0 +1,66 @@
+My django doc 2 (django 2.2.6)
+
+Installation:
+  -update the install tool pip:
+    (myvenv) ~$ python -m pip install --upgrade pip
+  -create a requirements.txt file inside the project directory
+    -(sampleve) luc in ~/projectsample$ gedit requirements.txt
+  -add this line in the file:
+    Django~=2.2.4
+  -run pip to install the required django:
+    (sampleve) luc in ~/projectsample$ pip install -r requirements.txt
+
+
+Create project:
+    (dja22ve) ~/dja22$ django-admin startproject mysite .
+    The period . is crucial because it tells the script to install Django in your current directory (for which the period . is a short-hand reference).
+
+Changing settings (editing mysite/settings.py):
+    TIME_ZONE = 'Europe/Paris'
+    LANGUAGE_CODE = 'fr'
+
+    at the end of the file:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static') (added)
+
+    allowing the host for your app:
+    ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+
+Set up a database:
+    -if using another database then sqlite3: modifie DATABASES in setting.py
+    -creating the database :
+        (dja22ve) ~/dja22$ python manage.py migrate
+
+Starting the web server:
+    (dja22ve) ~/dja22$ python manage.py runserver
+
+Creating an application:
+    (dja22ve) ~/dja22$ python manage.py startapp testapp
+    declare the new app to django in settings.py:
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'testapp',
+    ]
+
+creating URLS:
+    add the URLS of testapp to the urls.py file of the site:
+        modify mysite/urls.py
+            from django.contrib import admin
+            from django.urls import path, include
+
+            urlpatterns = [
+                path('admin/', admin.site.urls),
+                path('', include('testapp.urls')),
+            ]
+
+create your app urls in a new file called testapp/urls.py
+
+
+database migration:
+  (myvenv) ~/djangogirls$ python manage.py makemigrations testapp
+  (myvenv) ~/djangogirls$ python manage.py migrate testapp

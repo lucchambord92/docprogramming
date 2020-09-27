@@ -1,0 +1,115 @@
+My Linux Documentation Version 3
+
+1. Installation-remove packages
+	1.1 Installation
+	1.2 Fingerprint checking
+	1.3 Set up a repository for installation and upgrade through
+repositories
+	1.4 Removing packages
+
+2. Users-Groups management
+	2.1 List members of a group in Linux using /etc/group file
+	2.2 Add user to a group
+
+3. System configuration
+	3.1 Configure applications to start on boot
+
+4. Systems commands
+	4.1 Tasks management
+
+1. Installation-remove packages
+
+1.1 Installation
+-Update the apt package index:
+	$ sudo apt-get update
+-In case of installation and upgrading through REPOSITORIES, install packages
+to allow apt to use a repository over HTTPS:
+	$ sudo apt-get install \
+	apt-transport-https \
+    	ca-certificates \
+    	curl \
+    	gnupg-agent \
+    	software-properties-common
+-Install the packages pk1 and pk2:
+	$ sudo apt-get install pk1 pk2 --allow-unauthenticated
+	
+	Explanation:
+	-the option --allow-unauthenticated is used to tell apt to accept
+unsigned packages. This option is to use only when you trusted the unsigned
+packages.  
+
+1.2 Fingerprint checking
+-If you need to check the fingerprint of an image key, do this:
+	$ sudo apt-key fingerprint 0EBFCD88
+
+	Explanation:
+	This tells apt to search for the last 8 characters of the fingerprint.
+You can tell compare the fetched display key with the key you need to verify.
+
+1.3 Set up a repository for installation and upgrade through repositories
+-Enter this command:
+	$ sudo add-apt-repository \
+   	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   	$(lsb_release -cs) \
+   	stable"
+	
+	Explanation:
+	-The second through last line is about the repository to set up (it's
+the package 'docker' in this example). You need to follow the package
+documentation to know what to put.
+
+	
+1.4 Removing packages
+-Enter this command:
+	$ sudo apt-get remove pk1 pk2
+
+	Explanation:
+	-Tells apt to remove pk1 and pk2
+
+2. Users-Groups management
+2.1 List members of a group in Linux using /etc/group file
+-Enter the command:
+	$ grep 'group_name' /etc/group
+
+	example result: group_name:x:4:user1,user2
+	Explanation:
+		-x is the group's password (not displayed)
+		-4 is the groupid GID
+		-user1, user2 are the members in the group.
+
+2.2 Add user to a group
+-Enter the command:
+	$ sudo usermod -aG docker $USER
+	
+	Explanation:
+	-add the login user to the group 'docker'
+	-log out and log back in so that your group membership is re-evaluated.
+	-if testing on a virtual machine, it may be necessary to restart the virtual machine for changes to take effect.
+	-On Linux, you can also run the following command to activate the changes to groups:
+		$ newgrp docker 
+
+3. System configuration
+3.1 Configure applications to start on boot
+Most current Linux distributions (RHEL, CentOS, Fedora, Ubuntu 16.04 and higher) use systemd to manage which services start when the system boots. Ubuntu 14.10 and below use upstart.
+
+Using systemd:
+
+	$ sudo systemctl enable appname 
+
+To disable this behavior, use disable instead.
+
+	$ sudo systemctl disable appname
+
+
+4. Systems commands
+4.1 Tasks management
+	-command + & => execute task in background mode
+	-stop a foreground process : CTRL-C
+	-suspending Processes : CTRL-Z
+	-jobs: see all stopped or backgrounded processes
+	-ps T: list processes with their state
+	-fg %jobnumber : resume execution of that task 
+	-bg %jobnumber : resume execution of that task in background
+	-kill %jobnumber: kill the background process with that jobnumber
+
+

@@ -1,0 +1,25 @@
+My django doc version 3
+
+Topics
+1. Project settings
+1.1 Access project settings
+
+2. Forms
+2.1 Listing forms' attributes:
+	
+Content
+
+1. Project settings
+The project settings (database, international specifications, static files, etc)are defined in the project settings.py file. They should be accessed by the way specified in 1.1.
+
+1.1 Access project settings
+	from django.conf import settings
+	settings.MEDIA_ROOT => '/home/luc/media/photoapp'
+	settings.MEDIA_URL => '/media/'
+
+2. Forms
+2.1 Listing forms' attributes:
+	form_obj.as_ul() 
+
+
+

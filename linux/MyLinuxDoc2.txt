@@ -1,0 +1,121 @@
+Shell scripts:
+    -Scripts files:
+        -start with : #!/bin/bash (tell linux to load the BASH shell for this script)
+        -Tous les commentaires commencent par un #
+        -chmod +x essai.sh (donne le droit d'exécution de essai.sh à tlm)
+        -./scripts_folder/scripts_name (./ => current folder)
+        -deboggage: bash -x essai.sh (-x mode deboggage)
+        -echo $PATH (liste tous les répertoires exécutables de la variable d'environnment PATH)
+
+Usual shell commands:
+
+    -source cmdfile => execute cmdfile :
+        -the cmdfile must be in the current directory. Otherwise, specify the correct path for it or add its directory to $PATH
+        -you can also lauch it with ./cmdfile but it does not work sometimes ...  
+        
+    -touch newfile => create a new empty file
+    -rm oldfile => remove oldfile
+    -cp file1 file2 => copy file1 to a new file file2
+    -cat file1 => display file1 in raw
+    -less file1 => display files 1 sophistically:
+        -arrows keyboard => move in the text        
+        -10 arrow down => advance 10 line
+        -/name => search name in text
+        -h => help for less
+            -q quit help
+    -vi file1 => edit file1:
+        -mode commande, mode insertion
+        -mode commande:
+            -commandes similaires à less
+            -:wq write and quit
+        -i en mode commande: passe au mode d'insertion:
+            -echap => sort du mode insertion
+        
+    -chmod u+r file => add read right to file for user:
+        -g pour le groupe, o pour les autres utilisateurs (other)
+   
+    - cal -m apr => affiche le mois d'avril du calendrier   
+    -echo $PATH => display the content of the variable PATH
+    -setxkbmap fr => Set french keyboard
+    -rmdir => Remove the DIRECTORY(ies), if they are empty
+    -mv oldname newname : rename file oldname with newname
+
+Calculation:
+    -bc => launch the interactive calculator
+    -$(( expression )) => capture an expression and evaluate it
+    -for more possibilities, see doc mooc bash
+
+Installation, upgrade, remove packages:
+    -sudo apt-get update && sudo apt-get install packagename
+    ALWAYS CONDITIONS INSTALL WITH SUCCESSFUL APT-GET UPDATE
+
+Helps:
+    -command -h --help 
+    -man command
+    -dans man: 
+        -/EXEMPLES accède à la section EXEMPLES
+        -q : quiter le manuel
+    -apropos mot-clé
+
+
+Shortcuts for command line:
+    -ctrl A : go to beginning of line
+    -ctrl E : go to end of line
+    -alt + backspace : delete last word
+    -history : show command history
+    -!+ history line number: reexecute this command line
+    -ctrl R : research in history commands 
+    -tab : autocompletion
+    -tab tab : show options for autocompletion
+
+Special characters for file:
+    . = current directory
+    .. parent directory
+    ~ user home directory
+    * all sequence of characters
+    ? one any character
+    [az] one character a or z
+    [a-d] one character a to d
+
+working environment:
+    -printenv: display systems environment variables
+    -set: display all environments variables
+    -$PATH : list of executables files directory
+    -PATH="$HOME/.local/bin/myscripts:$PATH": adding $HOME/.local/bin/myscripts to variable $PATH
+    -/home/user/.bashrc is executed for shell bash when the terminal is launched. Edit it for adding personal initialization
+    
+
+Commands syntax:
+    -i=1 affect 1 to variable i
+    -echo $i display variable i
+    -$(command) : substitute () with command
+    -echo ici:$(pwd) => ici:current directory
+    -total inhibition of special characters: ''
+    -one character inhibition : \character
+
+control of command execution:   
+    -return code of execution of a command : ?
+    -ps -f : display processes
+    -command arguments & => execute the command at background (bash is immediately available for new command after lauching it)
+    -jobs : display list of background jobs
+    -kill -15 pid => sends stop signal to pid
+
+control of input and output of a command:   
+    -simple output redirection of stdout(1) : >
+    -output redirection of stdout(1) in append mode to an existing file : >>
+    -same for stderr : add 2 before
+    -redirection of stdin (0) : <
+    -"|" pipe connect 2 processes: the output of the first process is the input of the second process
+
+installing a virtual environment:
+    -create a directory for the virtual environment:
+        $ mkdir projectapp
+    -set the current directory to this new directory:
+        $ cd projectapp
+    -create the virtual environment with python:
+        python3 -m venv appve
+    -activate the virtual environment before any actions needing it:
+        $ source sampleve/bin/activate
+
+Hardware informations:
+    -access BIOS while booting: maintain Esc key on ASUS vivobook S

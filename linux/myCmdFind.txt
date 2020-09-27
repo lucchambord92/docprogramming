@@ -1,0 +1,60 @@
+Content
+1.1 - Find files containing a pattern name
+1.2 - Find directories or files in a directory tree
+1-3 - Find files that was  modified since a date by specifying the date delta
+1.4 - Find files modified since a date by specifying the date
+
+Documentation
+1.1 - Find all python programs using variable "fixer" in the current directory and
+all its subdirectories:
+	find . -name '*.py' | xargs grep -l fixer
+
+	Explanation:
+	-name: tells 'find' to compare with the base file name (the base file
+name is the name of the file without its directory path)
+	-'*.py' tells 'find' to look for all files endding with '.py'
+	-xargs: is a command builder. It builds a command from the standard
+input (here from the lists of result files of 'find', and launch the built
+command (here grep)
+	-grep -l fixer: tells 'grep' to print the files' name that contain the
+pattern 'fixer'
+
+1.2 - Find, in the ~ directory and its subdirectories, a file or directory 'linux'
+with parents directories like this (case insensitive):
+	-any direct parent directories,
+	-a grand parent directory starting with 'do'
+	-a grand grand parent directory ~ (user home directory):
+	
+	find ~ -ipath ~/do*/*/linux
+	
+	Explanation:
+	-ipath: tells 'find' to match the whole path names (absolute path) for
+each file it compares.
+
+	example result: 
+	/home/luc/Documents/Programming/linux
+
+1.3 - Find, in the current directory and its subdirectories, all regular files that was modified yesterday:
+	find . -daystart -type f -mtime 1
+	
+	Explanation: 
+		-daystart options tells 'find' to count by days from today
+		-type f: means regular file
+		-mtime 1: mean modified 1 day
+		-other options:
+			-atime: for access time
+			-ctime: for status changed (modify the file or its attributes)
+
+1.4 - Find, in the current directory and its subdirectories, all files that have
+been modified since December 24 of this year:
+	find . -newermt "DEC 24"
+
+	Explanation:
+	-newermt "DEC 24": tells "find" to search for files that have a
+modified time(m) newer than the time litteral reference (t) "DEC 24"
+	-other options:
+		-newerat: for last access time since
+		-newerBt: for Birth time after
+		-newerct: for change time since
+		
+	

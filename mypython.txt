@@ -1,0 +1,11 @@
+My Python3 documentation
+
+Topics
+1. String
+1.1 string split
+
+content
+1. String
+1.1 string split
+	"photo.jpg".split('.') => ['photo', 'jpg']
+
